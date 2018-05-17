@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2013 Center for eHalsa i samverkan (CeHis).
+    							<http://cehis.se/>
+
+    This file is part of SKLTP.
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+
+-->
+<mule
+        xmlns="http://www.mulesoft.org/schema/mule/core"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:spring="http://www.springframework.org/schema/beans"
+        xmlns:https="http://www.mulesoft.org/schema/mule/https"
+        xmlns:http="http://www.mulesoft.org/schema/mule/http"
+        xsi:schemaLocation="
+		http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-current.xsd
+		http://www.mulesoft.org/schema/mule/core	http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/https	http://www.mulesoft.org/schema/mule/https/current/mule-https.xsd
+		http://www.mulesoft.org/schema/mule/http    http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+	">
+
+    <spring:beans>
+        <spring:import resource="classpath:https-test-consumer-service.xml"/>
+    </spring:beans>
+
+    <!-- Https connector used when acting as a consumer, ie making calls, sends no session info -->
+    <https:connector name="VPConsumerConnector" keepSendSocketOpen="false" keepAlive="false" socketSoLinger="0">
+        <service-overrides sessionHandler="org.mule.session.NullSessionHandler" />
+        <https:tls-key-store class="jks" path="certs/client.jks" storePassword="password" keyPassword="password" />
+        <https:tls-server    class="jks" path="certs/truststore.jks" storePassword="password" requireClientAuthentication="true"/>
+    </https:connector>
+
+</mule>
