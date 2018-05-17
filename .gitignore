@@ -7,3 +7,4 @@ target
 .mule/
 transaction.log
 .DS_Store
+/release.properties
