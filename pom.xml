@@ -11,7 +11,7 @@
 
     <groupId>se.skltp.patch.mule.tls.default</groupId>
     <artifactId>skltp-patch-mule-tls-default</artifactId>
-    <version>1.0-RC2-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -27,7 +27,7 @@
         <url>http://github.com/skltp/patch-mule-tls-default</url>
         <connection>scm:git:git://github.com/skltp/patch-mule-tls-default.git</connection>
         <developerConnection>scm:git:git://github.com/skltp/patch-mule-tls-default.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v1.0</tag>
     </scm>
 
     <dependencies>
