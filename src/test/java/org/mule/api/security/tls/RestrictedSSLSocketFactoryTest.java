@@ -59,8 +59,10 @@ public class RestrictedSSLSocketFactoryTest extends FunctionalTestCase {
         server.setHandler(new RequestHandler());
         server.start();
 
+
         return server;
     }
+
 
     private SslContextFactory createSslContextFactory(String[] includeProtocols) {
         SslContextFactory sslContextFactory = new SslContextFactory();
@@ -72,6 +74,7 @@ public class RestrictedSSLSocketFactoryTest extends FunctionalTestCase {
                 "certs/truststore.jks").toExternalForm());
         sslContextFactory.setTrustStorePassword("password");
         sslContextFactory.setIncludeProtocols(includeProtocols);
+        sslContextFactory.setExcludeCipherSuites("");
         return sslContextFactory;
     }
 
